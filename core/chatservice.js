@@ -13,6 +13,7 @@ exports.chatService = Montage.specialize({
             this.init();
         }
     },
+
     rawInput: {
         value: function (data) {
             log('RECV: ' + data);
@@ -93,7 +94,6 @@ exports.chatService = Montage.specialize({
     },
     joinRoom: {
         value: function (room, nick, rosterfn) {
-            debugger
             var self = this;
             connection.muc.join(room, nick, function (msg, opt) {
             }, function (data, pre) {
@@ -101,18 +101,23 @@ exports.chatService = Montage.specialize({
             }, rosterfn, "welcome", null);
         }
     },
+    leaveRoom:{
+       value:function(room,nick){
+           connection.muc.leave(room,nick,null,null);
+       }
+    },
     createRoom: {
         value: function () {
             var self = this;
-            if (this.connectionStatus != Strophe.Status.CONNECTED) {
-                this.connect();
+            if (self.connectionStatus != Strophe.Status.CONNECTED) {
+                self.connect();
                 return;
             }
 
-            var roominfo = this.roomID + "@" + this.roomSuffix;
+            var roominfo = self.roomID + "@" + self.roomSuffix;
             var d = $pres({
                 "from": self.userJID,
-                "to": roominfo + "/" + this.userJID.replace('@', '_')
+                "to": roominfo + "/" + self.userJID.replace('@', '_')
             })
                 .c("x", {"xmlns": "http://jabber.org/protocol/muc"});
 
@@ -122,6 +127,7 @@ exports.chatService = Montage.specialize({
                 log("Create " + roominfo + " successfully.");
             }, function (err) {
                 log("Create chat room failed. Err:" + err);
+                //self.leaveRoom(roominfo,self.userJID);
                 setTimeout(function () {
                     self.joinRoom(roominfo, self.userJID.replace('@', '_'), function (data, opt) {
                         log("Join " + roominfo + " room successfully.");
