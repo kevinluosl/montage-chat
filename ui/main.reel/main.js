@@ -13,6 +13,23 @@ exports.Main = Component.specialize(/** @lends Main# */ {
         value: function Main() {
             this.super();
         }
+    },
+    enterDocument:{
+        value:function(isFirsttime){
+            if (isFirsttime)
+            {
+                var chatcli=new chatService();
+                chatcli.userJID="kkk";
+                chatcli.roomID="TestRoom";
+                chatcli.connect();
+                setTimeout(function(){
+                    chatcli.createRoom();
+                    setInterval(function(){
+                        chatcli.sendMessage("KDJFKDJFKDFJDKFDJFD");
+                    },10000);
+                },5000);
+            }
+        }
     }
 
 });

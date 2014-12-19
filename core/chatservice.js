@@ -17,12 +17,12 @@ exports.chatService = Montage.specialize({
     },
     rawInput: {
         value: function (data) {
-            this.log('RECV: ' + data);
+            console.log('RECV: ' + data);
         }
     },
     rawOutput: {
         value: function (data) {
-            this.log('SENT: ' + data);
+            console.log('SENT: ' + data);
         }
     },
     BOSH_SERVICE: {
@@ -51,26 +51,24 @@ exports.chatService = Montage.specialize({
     },
     init: {
         value: function () {
-            debugger
+            var self=this;
             connection = new Strophe.Connection(this.BOSH_SERVICE);
             connection.rawInput = this.rawInput;
             connection.rawOutput = this.rawOutput;
-            connection.addHandler(this.handleMessage, null, "message");
+            connection.addHandler(function(msgXML){
+                var to = msgXML.getAttribute('to');
+                var from = msgXML.getAttribute('from');
+                var fromBareJid = Strophe.getBareJidFromJid(from);
+                var type = msgXML.getAttribute('type');
+                var elems = msgXML.getElementsByTagName('body');
+                var text = Strophe.getText(elems[0]);
+                self.msgFrom = from;
+                self.msgTo = to;
+                self.msgContent = text;
+                self.log("========From:" + from + ":    " + text);
+                return true;
+            }, null, "message");
             connection.muc.init(connection);
-        }
-    },
-    handleMessage: {
-        value: function (msxXML) {
-            var to = msgXML.getAttribute('to');
-            var from = msgXML.getAttribute('from');
-            var fromBareJid = Strophe.getBareJidFromJid(from);
-            var type = msgXML.getAttribute('type');
-            var elems = msgXML.getElementsByTagName('body');
-            var text = Strophe.getText(elems[0]);
-            this.msgFrom = from;
-            this.msgTo = to;
-            this.msgContent = text;
-            this.log("========From:" + from + ":    " + text);
         }
     },
     connectionStatus: {
@@ -78,18 +76,19 @@ exports.chatService = Montage.specialize({
     },
     connect: {
         value: function () {
-            this.connection.connect(this.userJID, "welcome", function (status) {
-                this.connectionStatus = status;
+            var self = this;
+            connection.connect(this.userJID, "welcome", function (status) {
+                self.connectionStatus = status;
                 if (status == Strophe.Status.CONNECTING) {
-                    this.log('Strophe is connecting.');
+                    self.log('Strophe is connecting.');
                 } else if (status == Strophe.Status.CONNFAIL) {
-                    this.log('Strophe failed to connect.');
+                    self.log('Strophe failed to connect.');
                 } else if (status == Strophe.Status.DISCONNECTING) {
-                    this.log('Strophe is disconnecting.');
+                    self.log('Strophe is disconnecting.');
                 } else if (status == Strophe.Status.DISCONNECTED) {
-                    this.log('Strophe is disconnected.');
+                    self.log('Strophe is disconnected.');
                 } else if (status == Strophe.Status.CONNECTED) {
-                    this.log('Strophe is connected.');
+                    self.log('Strophe is connected.');
                 }
             });
         }
@@ -103,6 +102,7 @@ exports.chatService = Montage.specialize({
     },
     createRoom: {
         value: function () {
+            var self = this;
             if (this.connectionStatus != Strophe.Status.CONNECTED) {
                 this.connect();
                 return;
@@ -111,7 +111,7 @@ exports.chatService = Montage.specialize({
             var roominfo = this.roomID + "@" + this.roomSuffix;
             var d =
                 $pres({
-                    "from": this.userJID,
+                    "from": self.userJID,
                     "to": roominfo + "/" + this.userJID.replace('@', '_')
                 })
                     .c("x", {"xmlns": "http://jabber.org/protocol/muc"});
@@ -119,19 +119,23 @@ exports.chatService = Montage.specialize({
             connection.send(d.tree());
 
             var roomrel = connection.muc.createInstantRoom(roominfo, function () {
-                this.log("Create " + roominfo + " successfully.");
+                self.log("Create " + roominfo + " successfully.");
             }, function (err) {
-                this.log("Create chat room failed. Err:" + err);
+                self.log("Create chat room failed. Err:" + err);
+                self.joinRoom(roominfo,self.userJID,function(){
+                    self.log("Join "+roominfo+" room successfully.");
+                });
             });
-            this.log("After create room, return :" + roomrel);
+            self.log("After create room, return :" + roomrel);
         }
     },
     sendMessage: {
         value: function (msg) {
+            var self = this;
             if (connection)
-                connection.muc.groupchat(this.roomID, msg, "<p>" + msg + "</p>");
+                connection.muc.groupchat(this.roomID + "@" + this.roomSuffix, msg, "<p>" + msg + "</p>");
             else
-                this.log("You didn't connect to server yet.");
+                self.log("You didn't connect to server yet.");
         }
     }
 });
