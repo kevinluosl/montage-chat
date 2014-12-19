@@ -122,7 +122,7 @@ exports.chatService = Montage.specialize({
                 self.log("Create " + roominfo + " successfully.");
             }, function (err) {
                 self.log("Create chat room failed. Err:" + err);
-                self.joinRoom(roominfo,self.userJID,function(){
+                self.joinRoom(roominfo,self.userJID.replace('@', '_'),function(){
                     self.log("Join "+roominfo+" room successfully.");
                 });
             });
