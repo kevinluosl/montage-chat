@@ -1,0 +1,82 @@
+body, html
+{
+    height: 100%;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.ChatRoom
+{
+    display:-webkit-flex;
+    display:flex;
+
+    flex-direction: column;
+    -webkit-flex-direction: column;
+
+    height: 100%;
+}
+
+.ChatRoom-mainContent
+{
+    flex:1;
+    -webkit-flex: 1;
+
+    display:-webkit-flex;
+    display:flex;
+
+    flex-direction: row;
+    -webkit-flex-direction: row;
+}
+
+.ChatRoom-mainContent-userList
+{
+    -webkit-animation:RoomListShowKeyFrame 1s;
+    flex:0 0 200px;
+    -webkit-flex: 0 0 200px;
+}
+
+.ChatRoom-mainContent-contentArea
+{
+    flex:1;
+    -webkit-flex: 1;
+
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-color:#efefef;
+
+    flex-direction: column;
+    -webkit-flex-direction: column;
+
+    display:-webkit-flex;
+    display:flex;
+
+    background-color:#eeeecc;
+
+}
+
+.ChatRoom-mainContent-contentArea-messageList
+{
+    padding-top: 6px;
+    display:-webkit-flex;
+    display:flex;
+
+    flex-direction: column;
+    -webkit-flex-direction: column;
+
+    flex:1;
+    -webkit-flex: 1;
+}
+
+.ChatRoom-mainContent-contentArea-postMessage
+{
+    display:-webkit-flex;
+    display:flex;
+
+    flex-direction: row;
+    -webkit-flex-direction: row;
+
+    flex:0 0 50px;
+    -webkit-flex:0 0 50px;
+}

@@ -12,13 +12,25 @@
                 "properties": {
                     "element": {"#": "main"}
                 }
+            },
+            "chatRoom": {
+				"prototype": "ui/chat.reel",
+                "properties": {
+                    "element": {"#": "chatRoom"},
+                    "chatRoomName":"room1",
+                    "BOSH_SERVICE":"http://192.168.0.124:7070/http-bind/"
+                },
+                "bindings": {
+                        "chatUserName": {"<-": "@owner.username"}
+                }
             }
         }
+
     </script>
 </head>
 <body>
-    <div data-montage-id="main" data-montage-skin="light" class="Main">
-        <div data-montage-id="montageVersion"></div>
-    </div>
+<div data-montage-id="main" data-montage-skin="light" class="Main">
+    <div data-montage-id="chatRoom"></div>
+</div>
 </body>
 </html>

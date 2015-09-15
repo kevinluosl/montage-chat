@@ -3,7 +3,7 @@
  * @requires montage/ui/component
  */
 var Component = require("montage/ui/component").Component;
-var chatService=require("../../core/chatservice").chatService;
+var ChatService = require("../../core/chat-service").ChatService;
 /**
  * @class Main
  * @extends Component
@@ -14,22 +14,24 @@ exports.Main = Component.specialize(/** @lends Main# */ {
             this.super();
         }
     },
-    enterDocument:{
-        value:function(isFirsttime){
-            if (isFirsttime)
-            {
-                //var chatcli=new chatService();
-                //chatcli.userJID="kkk";
-                //chatcli.roomID="TestRoom";
-                //chatcli.connect();
-                //setTimeout(function(){
-                //    chatcli.createRoom();
-                //    setInterval(function(){
-                //        chatcli.sendMessage("KDJFKDJFKDFJDKFDJFD");
-                //    },10000);
-                //},5000);
+    enterDocument: {
+        value: function(isFirsTtime) {
+
+        }
+    },
+    username: {
+        get: function () {
+            return this.randomChar(5);
+        }
+    },
+    randomChar:{
+        value:function(len){
+            var x="123456789poiuytrewqasdfghjklmnbvcxzQWERTYUIPLKJHGFDSAZXCVBNM";
+            var tmp="";
+            for(var i=0;i< len;i++) {
+                tmp += x.charAt(Math.ceil(Math.random()*100000000)%x.length);
             }
+            return tmp;
         }
     }
-
 });

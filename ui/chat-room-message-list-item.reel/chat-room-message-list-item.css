@@ -1,0 +1,26 @@
+.ChatRoomMessageListItem {
+    background-color: #fbfbfb;
+    padding: 3px;
+    position: relative;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.ChatRoomMessageListItem-userName {
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    display: inline-block;
+}
+
+.ChatRoomMessageListItem-userName-postTime {
+    color: #bbbbbb;
+    display: inline-block;
+    float: right;
+}
+
+.ChatRoomMessageListItem-message {
+    display: inline-block;
+    background-color: #ffffff;
+    padding: 3px;
+    font-size: 16px;
+}

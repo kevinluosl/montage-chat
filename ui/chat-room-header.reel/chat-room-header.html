@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="chat-room-header.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "title":{
+            "prototype": "montage/ui/text.reel",
+			"properties": {
+				"element": {"#": "title"},
+				"value":"Chat Demo"
+			},
+			"bindings":{
+                "value":{"<-": "@owner.data"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+<div data-montage-id="owner" class="ChatRoomHeader">
+    <header data-montage-id="title" class="ChatRoomHeader-header"></header>
+</div>
+</body>
+</html>
