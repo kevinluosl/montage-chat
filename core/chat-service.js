@@ -12,7 +12,6 @@ exports.ChatService = Montage.specialize({
     constructor: {
         value: function () {
             var self = this;
-            self.init();
             window.onbeforeunload = function () {
                 var lconn=self.connection;
                 if (lconn) {
@@ -34,7 +33,7 @@ exports.ChatService = Montage.specialize({
         }
     },
     BOSH_SERVICE: {
-        value: 'http://192.168.0.124:7070/http-bind/'
+        value: undefined
     },
 
     connection: {
@@ -201,6 +200,7 @@ exports.ChatService = Montage.specialize({
 
     joinRoom: {
         value: function (room, nick, rosterfn) {
+            debugger;
             var self = this;
             self.connection.room.join(room, nick, function (msg, opt) {
                 return true;

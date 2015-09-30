@@ -26,7 +26,7 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
     },
 
     BOSH_SERVICE: {
-        value: 'http://192.168.0.124:7070/http-bind/'
+        value: undefined
     },
 
     chatRoomName: {
@@ -41,7 +41,7 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
         value: null
     },
 
-    _init: {
+    init: {
         value: function () {
             if (!this.chatService) {
                 this.chatService = new ChatService();
@@ -49,6 +49,11 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
                 this.chatService.roomID = this.chatRoomName;
                 this.chatService.BOSH_SERVICE = this.BOSH_SERVICE;
                 this.addPathChangeListener("this.chatService.messageContent", this, "handleMessageIncome");
+                this.chatService.defineBinding("BOSH_SERVICE", {
+                    "<-": "BOSH_SERVICE",
+                    source: this
+                });
+                this.chatService.init();
             }
         }
     },
@@ -102,13 +107,6 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
                 }
             });
         }
-    },
-
-    templateDidLoad: {
-        value: function (firstTime) {
-            this._init();
-        }
     }
-
 
 });

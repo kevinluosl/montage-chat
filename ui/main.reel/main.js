@@ -3,7 +3,6 @@
  * @requires montage/ui/component
  */
 var Component = require("montage/ui/component").Component;
-var ChatService = require("../../core/chat-service").ChatService;
 /**
  * @class Main
  * @extends Component
@@ -32,6 +31,15 @@ exports.Main = Component.specialize(/** @lends Main# */ {
                 tmp += x.charAt(Math.ceil(Math.random()*100000000)%x.length);
             }
             return tmp;
+        }
+    },
+
+    templateDidLoad: {
+        value: function (firstTime) {
+            if ( firstTime ){
+                this.templateObjects.chatRoom.init();
+            }
+
         }
     }
 });
