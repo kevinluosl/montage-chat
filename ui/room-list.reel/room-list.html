@@ -2,7 +2,7 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="chat-room-user-list.css">
+    <link rel="stylesheet" type="text/css" href="room-list.css">
     <script type="text/montage-serialization">
     {
         "owner": {
@@ -13,7 +13,7 @@
 		"rangeController":{
 			"prototype": "montage/core/range-controller",
 			"bindings": {
-				"content": { "<-": "@owner.contentController.userList" }
+				"content": { "<-": "@owner.roomList" }
 			}
 		},
 		"list": {
@@ -25,7 +25,7 @@
 			}
 		},
 		"item": {
-			"prototype": "ui/chat-room-user-list-item.reel",
+			"prototype": "ui/room-list-item.reel",
 			"properties": {
 				"element": { "#": "item" }
 			},
@@ -37,8 +37,8 @@
     </script>
 </head>
 <body>
-<div data-montage-id="owner" class="ChatRoomUserList">
-	<div class="ChatRoomUserList-header">Users</div>
+<div data-montage-id="owner" class="RoomList">
+    <div class="RoomList-header">Room List</div>
     <div data-montage-id="list">
         <li data-montage-id="item"></li>
     </div>

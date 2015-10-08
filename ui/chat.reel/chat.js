@@ -107,6 +107,25 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
                 }
             });
         }
+    },
+
+    _preparedForAction: {
+        value: false
+    },
+
+    prepareForActivationEvents: {
+        value: function () {
+            if (!this._preparedForAction) {
+                this.addEventListener("openRoomListAction", this, false);
+                this._preparedForAction = true;
+            }
+        }
+    },
+
+    handleOpenRoomListAction:{
+        value:function(){
+           this.templateObjects.roomList.refreshData();
+        }
     }
 
 });

@@ -80,3 +80,9 @@ body, html
     flex:0 0 50px;
     -webkit-flex:0 0 50px;
 }
+
+.ChatRoom .RoomList
+{
+
+    position: absolute;
+}

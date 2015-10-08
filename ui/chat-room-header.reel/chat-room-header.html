@@ -19,6 +19,19 @@
 			"bindings":{
                 "value":{"<-": "@owner.data"}
             }
+        },
+
+        "roomList":{
+            "prototype": "digit/ui/button.reel",
+			"properties": {
+				"element": {"#": "roomList"}
+			},
+			"listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
         }
     }
     </script>
@@ -26,6 +39,7 @@
 <body>
 <div data-montage-id="owner" class="ChatRoomHeader">
     <header data-montage-id="title" class="ChatRoomHeader-header"></header>
+    <div data-montage-id="roomList">Room List</div>
 </div>
 </body>
 </html>

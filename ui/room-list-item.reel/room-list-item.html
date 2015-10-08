@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="room-list-item.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+
+		"roomName": {
+			"prototype": "montage/ui/text.reel",
+			"properties": {
+				"element": {"#": "roomName"}
+			},
+			"bindings": {
+				"value": { "<-": "@owner.value._name" }
+			}
+		}
+    }
+    </script>
+</head>
+<body>
+<div data-montage-id="owner" class="RoomListItem">
+    <div  data-montage-id="roomName" class="RoomListItem-roomName"></div>
+</div>
+</body>
+</html>

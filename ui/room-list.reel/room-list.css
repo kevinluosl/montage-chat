@@ -1,0 +1,19 @@
+.RoomList{
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: white;
+    min-width: 300px;
+}
+.RoomList-header
+{
+    padding: 3px 10px;
+    text-align: center;
+    background-color: #0AA3DA;
+    color: white;
+    font-size: 14px;
+}
+.RoomList .RoomListItem
+{
+    padding: 4px 8px;
+}

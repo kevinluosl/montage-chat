@@ -12,5 +12,11 @@ exports.ChatRoomHeader = Component.specialize(/** @lends ChatRoomHeader# */ {
         value: function ChatRoomHeader() {
             this.super();
         }
+    },
+
+    handleAction:{
+        value:function(){
+            this.dispatchEventNamed("openRoomListAction", true, true,null);
+        }
     }
 });

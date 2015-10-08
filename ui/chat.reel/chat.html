@@ -3,16 +3,14 @@
 <head>
     <title></title>
     <link rel="stylesheet" type="text/css" href="chat.css">
-    <script type="text/montage-serialization"
-            >
-
+    <script type="text/montage-serialization">
     {
         "owner": {
             "properties": {
                 "element": {"#": "owner"}
             }
         },
-        "header": {,.`
+        "header": {
             "prototype": "ui/chat-room-header.reel",
             "properties": {
                 "element": {"#": "header"}
@@ -40,9 +38,18 @@
             "prototype": "ui/chat-room-user-list.reel",
             "properties": {
                 "element": {"#": "userList"}
-            },≥÷/≥/m,
+            },
             "bindings":{
-                        "contentController":{"<-": "@owner.`"}
+                        "contentController":{"<-": "@owner.chatService"}
+            }
+        },
+        "roomList": {
+            "prototype": "ui/room-list.reel",
+            "properties": {
+                "element": {"#": "roomList"}
+            },
+            "bindings":{
+                  "chatService":{"<-": "@owner.chatService"}
             }
         }
     }
@@ -58,6 +65,7 @@
                 <div data-montage-id="postMessage" class="ChatRoom-mainContent-contentArea-postMessage"></div>
             </div>
         </div>
+        <div data-montage-id="roomList"></div>
     </div>
 </body>
 </html>

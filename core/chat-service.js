@@ -132,6 +132,16 @@ exports.ChatService = Montage.specialize({
         }
     },
 
+    listRooms:{
+       value:function(handle_cb, error_cb){
+           var self = this;
+           self.connection.room.listRooms("conference.tom-pc",function(preXML){
+               var jsonObj = self.xml2json.xml2json(preXML);
+               handle_cb(jsonObj.query.item);
+           },error_cb);
+       }
+    },
+
     connectionStatus: {
         value: null
     },
@@ -139,7 +149,7 @@ exports.ChatService = Montage.specialize({
     connect: {
         value: function (onconnect) {
             var self = this;
-            self.connection.connect(this.userJid, "welcome", function (status) {
+            self.connection.connect(this.userJid, "welcome1", function (status) {
                 self.connectionStatus = status;
                 if (status == Strophe.Status.CONNECTING) {
                     log('Strophe is connecting.');
@@ -200,7 +210,6 @@ exports.ChatService = Montage.specialize({
 
     joinRoom: {
         value: function (room, nick, rosterfn) {
-            debugger;
             var self = this;
             self.connection.room.join(room, nick, function (msg, opt) {
                 return true;

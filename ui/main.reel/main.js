@@ -38,6 +38,7 @@ exports.Main = Component.specialize(/** @lends Main# */ {
         value: function (firstTime) {
             if ( firstTime ){
                 this.templateObjects.chatRoom.init();
+
             }
 
         }
