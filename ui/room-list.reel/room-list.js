@@ -27,16 +27,22 @@ exports.RoomList = Component.specialize(/** @lends RoomList# */ {
             if ( this._roomList ){
                 return this._roomList;
             }else{
-                if ( this.chatService )
-                {
-                    var self = this;
-                    this.chatService.listRooms(function(data){
-                        self._roomList = data;
-                        self.dispatchOwnPropertyChange("roomList", self._roomList);
-                    },function(error){
+               this._refreshRoomListData();
+            }
+        }
+    },
 
-                    });
-                }
+    _refreshRoomListData:{
+        value:function(){
+            if ( this.chatService )
+            {
+                var self = this;
+                this.chatService.listRooms(function(data){
+                    self._roomList = data;
+                    self.dispatchOwnPropertyChange("roomList", self._roomList);
+                },function(error){
+
+                });
             }
         }
     },
@@ -48,8 +54,19 @@ exports.RoomList = Component.specialize(/** @lends RoomList# */ {
     },
 
     templateDidLoad: {
-        value: function() {
+        value: function () {
 
+        }
+    },
+
+    handleCreateAction:{
+        value:function(){
+            var self = this;
+            self.chatService.createRoom("abc",function () {
+                self.refreshData();
+            }, function (errorMsg) {
+
+            });
         }
     }
 });

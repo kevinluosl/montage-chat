@@ -231,14 +231,14 @@ exports.ChatService = Montage.specialize({
     },
 
     createRoom: {
-        value: function (successfn, failfn) {
+        value: function (roomName,successfn, failfn) {
             var self = this;
             if (self.connectionStatus != Strophe.Status.CONNECTED) {
                 self.connect();
                 return;
             }
 
-            var roominfo = self.roomID + "@" + self.roomSuffix;
+            var roominfo = roomName + "@" + self.roomSuffix;
             var d = $pres({
                 "from": self.userJid,
                 "to": roominfo + "/" + self.userJid.replace('@', '_')

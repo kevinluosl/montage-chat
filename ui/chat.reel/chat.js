@@ -41,6 +41,10 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
         value: null
     },
 
+    roomListOpen:{
+        value:false
+    },
+
     init: {
         value: function () {
             if (!this.chatService) {
@@ -95,7 +99,7 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
                     self.chatRoomTitle = 'Disconnected from server';
                 } else if (stat == Strophe.Status.CONNECTED) {
                     self.chatRoomTitle = 'Connecting to room ' + self.chatRoomName;
-                    self.chatService.createRoom(function () {
+                    self.chatService.createRoom(self.chatRoomName,function () {
                         self.chatRoomTitle = 'You are in the room ' + self.chatRoomName + ' now';
                     }, function (errorMsg) {
                         self.chatRoomTitle = 'Failed to connect room ' + self.chatRoomName + ', message:' + errorMsg;
@@ -125,6 +129,7 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
     handleOpenRoomListAction:{
         value:function(){
            this.templateObjects.roomList.refreshData();
+            this.roomListOpen = !this.roomListOpen;
         }
     }
 

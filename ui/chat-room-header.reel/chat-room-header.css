@@ -24,3 +24,8 @@
     color: white;
     font-size: 12px;
 }
+[data-montage-skin="light"]  .digit-Button.montage--active
+ {
+     background-image:none;
+     box-shadow:none;
+ }

@@ -32,13 +32,27 @@
 			"bindings": {
 				"value": { "<-": "@list:iteration.object" }
 			}
-		}
+		},
+		"create":{
+            "prototype": "digit/ui/button.reel",
+			"properties": {
+				"element": {"#": "create"},
+				"identifier":"create"
+			},
+			"listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        }
     }
     </script>
 </head>
 <body>
 <div data-montage-id="owner" class="RoomList">
     <div class="RoomList-header">Room List</div>
+	<div data-montage-id="create" class="RoomList-create">Create</div>
     <div data-montage-id="list">
         <li data-montage-id="item"></li>
     </div>
