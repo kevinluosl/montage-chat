@@ -33,7 +33,7 @@ exports.ChatService = Montage.specialize({
         }
     },
     BOSH_SERVICE: {
-        value: undefined
+        value:undefined
     },
 
     connection: {
@@ -48,8 +48,8 @@ exports.ChatService = Montage.specialize({
         value: null
     },
 
-    roomSuffix: {
-        value: "conference.tom-pc"
+    serviceDomain: {
+        value: undefined
     },
 
     messageFrom: {
@@ -135,7 +135,7 @@ exports.ChatService = Montage.specialize({
     listRooms:{
        value:function(handle_cb, error_cb){
            var self = this;
-           self.connection.room.listRooms("conference.tom-pc",function(preXML){
+           self.connection.room.listRooms("conference.toms-mbp",function(preXML){
                var jsonObj = self.xml2json.xml2json(preXML);
                handle_cb(jsonObj.query.item);
            },error_cb);
@@ -237,7 +237,7 @@ exports.ChatService = Montage.specialize({
                 self.connect();
                 return;
             }
-            var roominfo = roomID + "@" + self.roomSuffix;
+            var roominfo = roomID + "@" + self.serviceDomain;
             var d = $pres({
                 "from": self.userJid,
                 "to": roominfo + "/" + self.userJid.replace('@', '_')
@@ -274,7 +274,7 @@ exports.ChatService = Montage.specialize({
         value: function () {
             var self = this;
             if (self.connection) {
-                var roominfo = self.roomID + "@" + self.roomSuffix;
+                var roominfo = self.roomID + "@" + self.serviceDomain;
                 self.connection.room.queryOccupants(roominfo, function (data) {
                 }, function (err) {
                 });
@@ -288,7 +288,7 @@ exports.ChatService = Montage.specialize({
         value: function (msg) {
             var self = this;
             if (self.connection)
-                self.connection.room.groupchat(self.roomID + "@" + self.roomSuffix, msg, "<p>" + msg + "</p>");
+                self.connection.room.groupchat(self.roomID + "@" + self.serviceDomain, msg, "<p>" + msg + "</p>");
             else
                 log("You didn't connect to server yet.");
         }

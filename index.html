@@ -25,6 +25,16 @@
     {
         "owner": {
             "prototype": "montage/ui/loader.reel"
+        },
+
+        "application": {
+            "prototype": "montage/core/application",
+            "properties": {
+                "delegate": {"@": "chatAppDelegate"}
+            }
+        },
+        "chatAppDelegate": {
+            "prototype": "core/chat-app-delegate"
         }
     }
     </script>

@@ -38,7 +38,7 @@ exports.Main = Component.specialize(/** @lends Main# */ {
         value: function (firstTime) {
             if ( firstTime ){
                 this.templateObjects.chatRoom.init();
-
+               // alert(this.application.config.APP_VERSION)
             }
 
         }

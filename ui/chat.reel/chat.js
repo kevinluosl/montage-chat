@@ -26,10 +26,6 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
         value: null
     },
 
-    BOSH_SERVICE: {
-        value: undefined
-    },
-
     chatRoomName: {
         value: null
     },
@@ -56,12 +52,9 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
                 this.chatService = new ChatService();
                 this.chatService.userJid = this.chatUserName;
                 this.chatService.roomID = this.chatRoomName;
-                this.chatService.BOSH_SERVICE = this.BOSH_SERVICE;
+                this.chatService.BOSH_SERVICE = this.application.config.BOSH_SERVICE;
+                this.chatService.serviceDomain = this.application.config.SERVICE_DOMAIN;
                 this.addPathChangeListener("this.chatService.messageContent", this, "handleMessageIncome");
-                this.chatService.defineBinding("BOSH_SERVICE", {
-                    "<-": "BOSH_SERVICE",
-                    source: this
-                });
                 this.chatService.init();
             }
             if ( !this.appData){
