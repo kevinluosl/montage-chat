@@ -4,6 +4,7 @@
  */
 var Component = require("montage/ui/component").Component,
     ChatService = require("core/chat-service").ChatService;
+    AppData = require("core/app-data").AppData;
 
 /**
  * @class ChatRoom
@@ -45,6 +46,10 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
         value:false
     },
 
+    appData:{
+        value:null
+    },
+
     init: {
         value: function () {
             if (!this.chatService) {
@@ -58,6 +63,9 @@ exports.Chat = Component.specialize(/** @lends ChatRoom# */ {
                     source: this
                 });
                 this.chatService.init();
+            }
+            if ( !this.appData){
+                this.appData = new AppData();
             }
         }
     },

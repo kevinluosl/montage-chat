@@ -34,7 +34,7 @@ exports.RoomList = Component.specialize(/** @lends RoomList# */ {
 
     _refreshRoomListData:{
         value:function(){
-            if ( this.chatService )
+            if ( this.chatService && this.chatService.connectionStatus == Strophe.Status.CONNECTED)
             {
                 var self = this;
                 this.chatService.listRooms(function(data){
@@ -59,11 +59,12 @@ exports.RoomList = Component.specialize(/** @lends RoomList# */ {
         }
     },
 
-    handleCreateAction:{
+    handleAddAction:{
         value:function(){
             var self = this;
             self.chatService.createRoom("abc",function () {
-                self.refreshData();
+                self._refreshRoomListData();
+                self.chatService.joinRoom("abc","tom",function(){})
             }, function (errorMsg) {
 
             });

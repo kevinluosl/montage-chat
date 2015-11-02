@@ -20,17 +20,20 @@
 }
 .RoomList .digit-Button
 {
-    position: absolute;
     padding: 0;
     background-color: transparent;
     background-image: none;
     border: none;
-    right: 10px;
     box-shadow: none;
-    top: 5px;
     text-shadow: none;
     color: white;
     font-size: 12px;
+}
+.digit-Button.RoomList-add
+{
+    position: absolute;
+    right: 10px;
+    top: 5px;
 }
 [data-montage-skin="light"]  .digit-Button.montage--active
 {

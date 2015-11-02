@@ -20,7 +20,7 @@
 			"prototype": "montage/ui/repetition.reel",
 			"properties": {
 				"element": { "#": "list" },
-				"isSelectionEnabled": false,
+				"isSelectionEnabled": true,
 				"contentController": {"@": "rangeController"}
 			}
 		},
@@ -33,7 +33,26 @@
 				"value": { "<-": "@list:iteration.object" }
 			}
 		},
-		"create":{
+		"add":{
+            "prototype": "digit/ui/button.reel",
+			"properties": {
+				"element": {"#": "add"},
+				"identifier":"add"
+			},
+			"listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "newName":{
+            "prototype": "montage/ui/text.reel",
+			"properties": {
+				"element": {"#": "newName"}
+			}
+        },
+        "create":{
             "prototype": "digit/ui/button.reel",
 			"properties": {
 				"element": {"#": "create"},
@@ -52,7 +71,11 @@
 <body>
 <div data-montage-id="owner" class="RoomList">
     <div class="RoomList-header">Room List</div>
-	<div data-montage-id="create" class="RoomList-create">Create</div>
+	<div data-montage-id="add" class="RoomList-add">Add</div>
+	<div>
+		<input data-montage-id="newName"/>
+		<div data-montage-id="create" class="RoomList-create">Create</div>
+	</div>
     <div data-montage-id="list">
         <li data-montage-id="item"></li>
     </div>
