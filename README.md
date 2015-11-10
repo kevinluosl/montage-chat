@@ -25,8 +25,7 @@ Will build a montagejs chatroom compoennt with a XMPP server.
 
 > Openfire demo server on Siloon Aly port number is 9070
 
-Client Configuration
-===================
+#### Client Configuration ####
 . Open core/chat-app-delegate.js
 . BOSH_SERVICE: "http://localhost:7070/http-bind/",
 . SERVICE_DOMAIN:"conference.contour" (In the above Openfire Web administrator control panel Group Chat page eg. conference.contour)
