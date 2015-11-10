@@ -5,7 +5,7 @@ Chatroom Component with XMPP server
 Will build a montagejs chatroom compoennt with a XMPP server.
 
 ##### Install & Config Openfire server on linux(centos) #####
-1. Download the latest Openfire tar package from http://www.igniterealtime.org/downloads/index.jsp#openfire
+1. Download  Openfire tar package from http://download.igniterealtime.org/openfire/openfire_3_10_2.tar.gz
 2. tar -xf openfire_3_10_2.tar.gz
 3. cd openfire/bin
 4. ./openfire start
@@ -26,9 +26,9 @@ Will build a montagejs chatroom compoennt with a XMPP server.
 > Openfire demo server on Siloon Aly server port number changed to 9070
 
 #### Client Configuration ####
-. Open core/chat-app-delegate.js
-. BOSH_SERVICE: "http://localhost:7070/http-bind/",
-. SERVICE_DOMAIN:"conference.contour" (In the above Openfire Web administrator control panel Group Chat page eg. conference.contour)
+- Open core/chat-app-delegate.js
+- BOSH_SERVICE: "http://localhost:7070/http-bind/",
+- SERVICE_DOMAIN:"conference.contour" (In the above Openfire Web administrator control panel Group Chat page eg. conference.contour)
 
 
 
