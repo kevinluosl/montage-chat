@@ -9,7 +9,7 @@ Will build a montagejs chatroom compoennt with a XMPP server.
 2. tar -xf openfire_3_10_2.tar.gz
 3. cd openfire/bin
 4. ./openfire start
-5. In browser open  http://localhost:9090/ (* Change ip address to host address *) to setup Openfire
+5. In browser open  http://localhost:9090/ (__Change ip address to host address__) to setup Openfire
 6. At the second setup page  input *contour* as Domain  then click bottom-right 'continue' button
 7. At the third setup page (Database Settings)  choose "Embedded Database" option
 
@@ -21,9 +21,9 @@ Will build a montagejs chatroom compoennt with a XMPP server.
 ##### Openfire console admin #####
 
 1. Open http://localhost:9090
-2. User name is *admin*  not email address, then password is setup in the above last step
+2. User name is __admin__  not email address, then password is setup in the above last step
 
-> Openfire demo server on Siloon Aly port number is 9070
+> Openfire demo server on Siloon Aly server port number changed to 9070
 
 #### Client Configuration ####
 . Open core/chat-app-delegate.js
