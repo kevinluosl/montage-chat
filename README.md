@@ -10,7 +10,7 @@ Will build a montagejs chatroom compoennt with a XMPP server.
 3. cd openfire/bin
 4. ./openfire start
 5. In browser open  http://localhost:9090/ (__Change ip address to host address__) to setup Openfire
-6. At the second setup page  input *contour* as Domain  then click bottom-right 'continue' button
+6. At the second setup page  input __contour__ as Domain  then click bottom-right 'continue' button
 7. At the third setup page (Database Settings)  choose "Embedded Database" option
 
 > Note: Openfire depend on JAVA,  if there is not JAVA on host, please install JAVA
